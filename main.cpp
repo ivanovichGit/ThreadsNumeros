@@ -12,7 +12,7 @@ Creador: Ivanovich Chiu
 #include<vector>
 #include<numeric>
 
-class RandomThrds {
+class RandomThreads {
     private:
         std::vector<int> randomVec;
         int randomSum;
@@ -59,7 +59,7 @@ class RandomThrds {
         }
 
         // Constructor
-        RandomThrds(std::string name):name(name) {}
+        RandomThreads(std::string name):name(name) {}
 };
 
 int main() {
@@ -67,19 +67,19 @@ int main() {
     srand(time(0));
 
     // Objects
-    RandomThrds alan("Alan");
-    RandomThrds bryan("Bryan");
-    RandomThrds chris("Chris");
-    RandomThrds dani("Dani");
-    RandomThrds emma("Emma");
-    RandomThrds fred("Fred");
-    RandomThrds gina("Gina");
-    RandomThrds hugo("Hugo");
-    RandomThrds ivan("Ivan");
-    RandomThrds julia("Julia");
+    RandomThreads alan("Alan");
+    RandomThreads bryan("Bryan");
+    RandomThreads chris("Chris");
+    RandomThreads dani("Dani");
+    RandomThreads emma("Emma");
+    RandomThreads fred("Fred");
+    RandomThreads gina("Gina");
+    RandomThreads hugo("Hugo");
+    RandomThreads ivan("Ivan");
+    RandomThreads julia("Julia");
 
     // Vector of objects and threads
-    std::vector<RandomThrds*> objs = {&alan,&bryan,&chris,&dani,&emma,&fred,&gina,&hugo,&ivan,&julia};
+    std::vector<RandomThreads*> objs = {&alan,&bryan,&chris,&dani,&emma,&fred,&gina,&hugo,&ivan,&julia};
     std::vector<std::thread> threads;
 
     // 10 threads by reference from all objs
