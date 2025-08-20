@@ -24,7 +24,7 @@ class RandomThread {
             }
         }
 
-        void calRandomSum() {
+        void runRandomSum() {
             // std::accumulate(start_iterator, end_iterator, initial_value_of_sum)
             this -> randomSum = std::accumulate(randomVector.begin(), randomVector.end(), 0);
         }
@@ -42,7 +42,7 @@ class RandomThread {
             std::cout << "]" << std::endl;
             return randomVector;
         }
-        int getRandomSum() {
+        int runRandomSum() {
             return randomSum;
         }
         std::string getName() {
