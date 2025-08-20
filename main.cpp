@@ -42,7 +42,7 @@ class RandomThread {
             std::cout << "]" << std::endl;
             return randomVector;
         }
-        int runRandomSum() {
+        int getRandomSum() {
             return randomSum;
         }
         std::string getName() {
@@ -52,7 +52,7 @@ class RandomThread {
         // Calculate Obj metrics
         void execute(){
             setRandomNumbers();
-            calRandomSum();
+            runRandomSum();
             printRandomSum();
         }
 
