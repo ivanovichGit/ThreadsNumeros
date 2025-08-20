@@ -12,54 +12,52 @@ Creador: Ivanovich Chiu
 #include<vector>
 #include<numeric>
 
-class RandomThreads {
+class RandomThread {
     private:
-        std::vector<int> randomVec;
+        std::vector<int> randomVector;
         int randomSum;
         std::string name;
 
-    public:
-        void setRandomNums() {
+        void setRandomNumbers() {
             for(int i = 0; i < 100; i++) {
-                randomVec.push_back(rand() % 1001);
+                randomVector.push_back(rand() % 1001);
             }
-        }
-
-        std::vector<int> getRandomVec() {
-            std::cout <<  name <<": [ ";
-            for (auto& n : randomVec) {
-                std::cout << n << " ";
-            }
-            std::cout << "]" << std::endl;
-            return randomVec;
         }
 
         void calRandomSum() {
             // std::accumulate(start_iterator, end_iterator, initial_value_of_sum)
-            this -> randomSum = std::accumulate(randomVec.begin(), randomVec.end(), 0);
-        }
-
-        int getRandomSum() {
-            return randomSum;
+            this -> randomSum = std::accumulate(randomVector.begin(), randomVector.end(), 0);
         }
 
         void printRandomSum() const {
             std::cout << name << " Sum: " << randomSum << std::endl;
         }
 
+    public:
+        std::vector<int> getRandomVector() {
+            std::cout <<  name <<": [ ";
+            for (auto& n : randomVector) {
+                std::cout << n << " ";
+            }
+            std::cout << "]" << std::endl;
+            return randomVector;
+        }
+        int getRandomSum() {
+            return randomSum;
+        }
         std::string getName() {
             return name;
         }
 
         // Calculate Obj metrics
-        void calObj(){
-            setRandomNums();
+        void execute(){
+            setRandomNumbers();
             calRandomSum();
             printRandomSum();
         }
 
         // Constructor
-        RandomThreads(std::string name):name(name) {}
+        RandomThread(std::string name):name(name) {}
 };
 
 int main() {
@@ -67,26 +65,26 @@ int main() {
     srand(time(0));
 
     // Objects
-    RandomThreads alan("Alan");
-    RandomThreads bryan("Bryan");
-    RandomThreads chris("Chris");
-    RandomThreads dani("Dani");
-    RandomThreads emma("Emma");
-    RandomThreads fred("Fred");
-    RandomThreads gina("Gina");
-    RandomThreads hugo("Hugo");
-    RandomThreads ivan("Ivan");
-    RandomThreads julia("Julia");
+    RandomThread alan("Alan");
+    RandomThread bryan("Bryan");
+    RandomThread chris("Chris");
+    RandomThread dani("Dani");
+    RandomThread emma("Emma");
+    RandomThread fred("Fred");
+    RandomThread gina("Gina");
+    RandomThread hugo("Hugo");
+    RandomThread ivan("Ivan");
+    RandomThread julia("Julia");
 
     // Vector of objects and threads
-    std::vector<RandomThreads*> objs = {&alan,&bryan,&chris,&dani,&emma,&fred,&gina,&hugo,&ivan,&julia};
+    std::vector<RandomThread*> objs = {&alan,&bryan,&chris,&dani,&emma,&fred,&gina,&hugo,&ivan,&julia};
     std::vector<std::thread> threads;
 
     // 10 threads by reference from all objs
     for (auto& obj : objs) {
         // Create new thread
         threads.emplace_back([&](){
-            obj->calObj();
+            obj->execute();
         });
     }
 
@@ -105,12 +103,9 @@ int main() {
 
     // Compare all and save max
     for (int i = 1; i < 10; i++) {
-
         if (maxSum < objs[i]->getRandomSum()) {
-
             maxName = objs[i]->getName();
             maxSum = objs[i]->getRandomSum();;
-
         }
     }
 
