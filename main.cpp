@@ -93,24 +93,14 @@ int main() {
         th.join();
     }
 
-    // Compare them using the objects vector
-    std::string maxName;
-    int maxSum = 0;
+    // Sort with pointers
+    std::sort(objs.begin(), objs.end(),
+    [](RandomThread* firstPointer, RandomThread* secondPointer) {
+              return firstPointer->getRandomSum() > secondPointer->getRandomSum();
+          });
 
-    // First is max
-    maxName = objs[0]->getName();
-    maxSum = objs[0]->getRandomSum();;
-
-    // Compare all and save max
-    for (int i = 1; i < 10; i++) {
-        if (maxSum < objs[i]->getRandomSum()) {
-            maxName = objs[i]->getName();
-            maxSum = objs[i]->getRandomSum();;
-        }
-    }
-
-    // Max Result
-    std::cout << "\nMax Result: " << maxName << " - " << maxSum << std::endl;
+    // Max Result with Sort
+    std::cout << "\nMax Result: " << objs[0]->getName() << " - " << objs[0]->getRandomSum()<< std::endl;
 
     return 0;
 }
